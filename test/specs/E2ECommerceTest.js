@@ -30,7 +30,7 @@ describe('ECommerce Application',() => {
         $('=India').click()
         $('[type="submit"]').click()
         expect($('.alert-success')).toHaveTextContaining('Success')
-        browser.pause(3000)
+        
         
     })
 })
