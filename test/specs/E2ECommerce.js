@@ -1,0 +1,41 @@
+const expectChai = require('chai').expect
+
+describe('ECommerce Application',function() {
+    it('End to End Test Smoke',function() {
+        this.retries(2)
+        var products = ["Blackberry","Nokia Edge"]
+        browser.url('/loginpagePractise/')
+        browser.maximizeWindow()
+        browser.pause(2500)
+        $('#username').setValue('rahulshettyacademy')
+        const password = $('#password')
+        password.setValue('learning')
+        browser.pause(3000)
+        const btnSignIn = $('input[name="signin"]')
+        btnSignIn.click()
+        //checkoutLink.waitForDisplayed()
+        //checkoutLink.waitForExist()
+        //browser.waitUntil(() => checkoutLink.waitForExist(),{timeout:5000,timeoutMsg:"Checkout Link did not display"})
+        let cards = $$('.card')
+        cards.filter(item => products.includes(item.$('h4 a').getText())).map(productcart => productcart.$('.btn-info').click())
+        const checkoutLink = $('*=Checkout')
+        checkoutLink.scrollIntoView()
+        checkoutLink.click()
+        let productPrice = $$('tr td:nth-child(4) strong')
+        let sumOfProducts = productPrice.map(price => parseInt(price.getText().split(".")[1].trim()))
+                    .reduce((acc,price) => acc + price,0)
+
+        console.log(sumOfProducts)
+        let total = parseInt($('h3 strong').getText().split('.')[1].trim())
+        console.log(total)
+        expectChai(sumOfProducts).to.equal(total)
+        $('.btn-success').click()
+        $('#country').setValue('Ind')
+        $('lds-ellipsis').waitForExist({reverse:true})
+        $('=India').click()
+        $('[type="submit"]').click()
+        expect($('.alert-success')).toHaveTextContaining('Success')
+        browser.pause(3000)
+        
+    })
+})

@@ -1,0 +1,28 @@
+{
+  "name": "webdriverioframework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx wdio run wdio.conf.js",
+    "suiteTest": "npx wdio run wdio.conf.js --suite EcommerceProduct",
+    "smokeTest": "npx wdio run wdio.conf.js --mochaOpts.grep Smoke",
+    "specTest": "npx wdio run wdio.conf.js --spec test/specs/E2ECommerceTest.js",
+    "allure-report":"allure generate allure-results --clean && allure open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/allure-reporter": "^7.7.3",
+    "@wdio/cli": "^7.7.3",
+    "@wdio/local-runner": "^7.7.3",
+    "@wdio/mocha-framework": "^7.7.3",
+    "@wdio/spec-reporter": "^7.7.3",
+    "@wdio/sync": "^7.7.3",
+    "chai": "^4.3.4",
+    "chromedriver": "^91.0.0",
+    "wdio-chromedriver-service": "^7.1.0",
+    "webdriverio": "^7.7.3"
+  }
+}
