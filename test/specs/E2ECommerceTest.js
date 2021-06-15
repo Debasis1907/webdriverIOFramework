@@ -16,8 +16,6 @@ describe('ECommerce Application',() => {
         console.log(data.credentials[0].password)
         loginPage.Login(data.credentials[0].username,data.credentials[0].password)
         browser.pause(3000)
-        //shopPage.lnkCheckout.waitForDisplayed()
-        //shopPage.lnkCheckout.waitForExist()
         console.log(data.products)
         shopPage.addProductToCart(data.products)
         shopPage.lnkCheckout.click()
